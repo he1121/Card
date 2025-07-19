@@ -17,10 +17,10 @@ public class WorldManager
     /// <summary>
     /// 构建战斗世界
     /// </summary>
-    public static void CreateBattleWorld()
+    public static void CreateBattleWorld(List<HeroData> playerHeroList, List<HeroData>enemyHeroList)
     {
         mBattleWorld = new BattleWorld();
-        mBattleWorld.OnCreate();
+        mBattleWorld.OnCreate(playerHeroList, enemyHeroList);
     }
 
     public static void OnUpdate()
