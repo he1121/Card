@@ -55,7 +55,10 @@ public class BattleWorld
                     Debugger.Log("移动完成 pos" + HeroLogic.heroList[0].logicPosition);
                     SkillEffect skillEffect = ResourcesManager.Instance.LoadObject<SkillEffect>("Prefabs/SkillEffect/Effect_RenMa_hit");
                     skillEffect.SetEffectPos(HeroLogic.enemyList[0].logicPosition);
-                    HeroLogic.heroList[0].DamageHP(20);
+                    LogicTimerManager.Instance.DelayCall(100, () =>
+                    {
+                        HeroLogic.enemyList[0].DamageHP(20);
+                    });
                 });
             ActionManager.Instance.RunAction(moveTo);
         }
@@ -79,6 +82,7 @@ public class BattleWorld
         HeroLogic?.OnLogicFrameUpdate();
         RoundLogic?.OnLogicFrameUpdate();
         ActionManager.Instance.OnLogicFrameUpdate();
+        LogicTimerManager.Instance.OnLogicFrameUpdate();
     }
 
     /// <summary>

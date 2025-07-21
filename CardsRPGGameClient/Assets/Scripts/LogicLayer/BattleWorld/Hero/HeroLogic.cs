@@ -30,7 +30,7 @@ public class HeroLogic : LogicObject
         atk = heroData.atk;
         def = heroData.def;
         agl = heroData.agl;
-        MaxHp = hp;
+        MaxHp = 100;
         rage = heroData.atkRage;
     }
     
@@ -76,8 +76,12 @@ public class HeroLogic : LogicObject
         else
         {
             PlayAnim("OnHit");
+            Debugger.Log("播放受击动画");
         }
         Debugger.Log("英雄id"+ id + "英雄损失血量:"+ damageHp + " 当前血量:" + hp);
+#if RENDER_LOGIC
+        heroRender.UpdateHP_HUD(damageHp.RawInt, hp.RawFloat/MaxHp.RawFloat);
+#endif
     }
 
     public void HeroDead()

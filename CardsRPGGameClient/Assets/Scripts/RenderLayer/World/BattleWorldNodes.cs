@@ -8,4 +8,9 @@ public class BattleWorldNodes : SingletonMono<BattleWorldNodes>
     public Transform[] heroTransArr;
     
     public Transform[] enemyTransArr;
+    
+    public Transform HUDWindowTrans;
+
+    public Camera Camera3D;
+    public Camera UICamera;
 }

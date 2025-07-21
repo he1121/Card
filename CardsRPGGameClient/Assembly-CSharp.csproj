@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\LogicLayer\BattleWorld\LogicCtrl\RoundLogicCtrl.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\BattleWorld\World\BattleWorld.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\BattleWorld\World\WorldManager.cs" />
+     <Compile Include="Assets\Scripts\LogicLayer\Config\AssetPathConfig.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\Config\LogicFrameSyncConfig.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\FixInt\AcosLookupTable.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\FixInt\Atan2LookupTable.cs" />
@@ -86,10 +87,13 @@
      <Compile Include="Assets\Scripts\LogicLayer\FixInt\VInt3.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\FixInt\VLine.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\FixInt\VRect.cs" />
+     <Compile Include="Assets\Scripts\LogicLayer\LogicTimer\LogicTimer.cs" />
+     <Compile Include="Assets\Scripts\LogicLayer\LogicTimer\LogicTimerManager.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\Tools\Debugger.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\Tools\Singleton.cs" />
      <Compile Include="Assets\Scripts\LogicLayer\Tools\SingletonMono.cs" />
      <Compile Include="Assets\Scripts\Manager\ResourcesManager.cs" />
+     <Compile Include="Assets\Scripts\RenderLayer\Hero\HeroHUDComponent.cs" />
      <Compile Include="Assets\Scripts\RenderLayer\Hero\HeroRender.cs" />
      <Compile Include="Assets\Scripts\RenderLayer\SkillSystem\Skill\SkillEffect.cs" />
      <Compile Include="Assets\Scripts\RenderLayer\World\BattleWorldNodes.cs" />
