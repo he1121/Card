@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum HeroTeamEnum
+{
+    None,
+    Self,
+    Enemy
+}
+
 public class HeroLogicCtrl : ILogicBehaviour
 {
-    public enum HeroTeamEnum
-    {
-        None,
-        Self,
-        Enemy
-    }
+    public List<HeroLogic> allHeroList = new List<HeroLogic>();
+    public List<HeroLogic> heroList = new List<HeroLogic>();
+    public List<HeroLogic> enemyList = new List<HeroLogic>();
     public void OnCreate()
     {
         
@@ -18,11 +22,11 @@ public class HeroLogicCtrl : ILogicBehaviour
     public void OnCreate(List<HeroData> playerHeroList, List<HeroData> enemyHeroList)
     {
 #if CLIENT_LOGIC
-        CreateHerosByList(playerHeroList, BattleWorldNodes.Instance.heroTransArr, HeroTeamEnum.Self);
-        CreateHerosByList(enemyHeroList, BattleWorldNodes.Instance.enemyTransArr, HeroTeamEnum.Enemy);
+        CreateHerosByList(playerHeroList, heroList, BattleWorldNodes.Instance.heroTransArr, HeroTeamEnum.Self);
+        CreateHerosByList(enemyHeroList, enemyList, BattleWorldNodes.Instance.enemyTransArr, HeroTeamEnum.Enemy);
 #else
-        CreateHerosByList(playerHeroList, null, HeroTeamEnum.Self);
-        CreateHerosByList(enemyHeroList, null, HeroTeamEnum.Enemy);
+        CreateHerosByList(playerHeroList, heroList, null, HeroTeamEnum.Self);
+        CreateHerosByList(enemyHeroList, enemyList, null, HeroTeamEnum.Enemy);
 #endif
     }
 
@@ -40,11 +44,24 @@ public class HeroLogicCtrl : ILogicBehaviour
     /// 生成英雄
     /// </summary>
     /// <param name="heroList"></param>
-    public void CreateHerosByList(List<HeroData> heroList, Transform[] parents, HeroTeamEnum heroTeamEnum)
+    /// <param name="heroLogicList"></param>
+    /// <param name="parents"></param>
+    /// <param name="heroTeamEnum"></param>
+    public void CreateHerosByList(List<HeroData> heroList, List<HeroLogic> heroLogicList, Transform[] parents, HeroTeamEnum heroTeamEnum)
     {
         foreach (var data in heroList)
         {
-            GameObject heroObj = ResourcesManager.Instance.LoadObject("Prefabs/Hero/" + data.id, parents[data.seatId], true, true, false);
+            HeroLogic heroLogic = new HeroLogic(data, heroTeamEnum);
+#if CLIENT_LOGIC
+            GameObject heroObj = ResourcesManager.Instance.LoadObject("Prefabs/Hero/" + data.id, parents[data.seatId], true, true, true);
+            HeroRender heroRender = heroObj.GetComponent<HeroRender>();
+            heroLogic.SetRenderObject(heroRender);
+            heroRender.SetLogicObject(heroLogic);
+            heroRender.SetHeroData(data, heroTeamEnum);
+#endif
+            heroLogic.OnCreate();
+            heroLogicList.Add(heroLogic);
+            allHeroList.Add(heroLogic);
         }
     }
 }

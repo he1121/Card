@@ -9,7 +9,7 @@ public class BattleWorld
 
     private float mAccLogicFrameRunTime; // 逻辑帧累计运行时间
     private float mNextLogicFrameTime; // 下一个逻辑帧时间
-    private float deltaTime; // 动画缓动时间
+    public static float deltaTime; // 动画缓动时间
     
     /// <summary>
     /// 战斗世界创建时触发
@@ -38,13 +38,37 @@ public class BattleWorld
             LogicFrameSyncConfig.LogicFrameId++;
         }
 
-        Debugger.Log("逻辑帧id:"+LogicFrameSyncConfig.LogicFrameId);
+        // Debugger.Log("逻辑帧id:"+LogicFrameSyncConfig.LogicFrameId);
         deltaTime = (mAccLogicFrameRunTime + LogicFrameSyncConfig.LogicFrameInterval - mNextLogicFrameTime) /
                     LogicFrameSyncConfig.LogicFrameInterval;
 #else
         OnLoginicFrameUpdate();
 #endif
-
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            HeroLogic.heroList[0].PlayAnim("Attack");
+            Debugger.Log("计时开始"+Time.realtimeSinceStartup);
+            MoveToAction moveTo = new MoveToAction(HeroLogic.heroList[0], HeroLogic.enemyList[0].logicPosition, 1000,
+                () =>
+                {
+                    Debugger.Log("计时结束"+Time.realtimeSinceStartup);
+                    Debugger.Log("移动完成 pos" + HeroLogic.heroList[0].logicPosition);
+                    SkillEffect skillEffect = ResourcesManager.Instance.LoadObject<SkillEffect>("Prefabs/SkillEffect/Effect_RenMa_hit");
+                    skillEffect.SetEffectPos(HeroLogic.enemyList[0].logicPosition);
+                    HeroLogic.heroList[0].DamageHP(20);
+                });
+            ActionManager.Instance.RunAction(moveTo);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            MoveToAction moveTo = new MoveToAction(HeroLogic.heroList[0], new VInt3(BattleWorldNodes.Instance.heroTransArr[0].position), 1000,
+                () =>
+                {
+                    Debugger.Log("移动完成 pos" + HeroLogic.heroList[0].logicPosition);
+                });
+            ActionManager.Instance.RunAction(moveTo);
+        }
     }
     
     /// <summary>
@@ -54,6 +78,7 @@ public class BattleWorld
     {
         HeroLogic?.OnLogicFrameUpdate();
         RoundLogic?.OnLogicFrameUpdate();
+        ActionManager.Instance.OnLogicFrameUpdate();
     }
 
     /// <summary>

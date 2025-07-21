@@ -22,12 +22,14 @@ public class GameMain : MonoBehaviour
                 //前5个为玩家英雄
                 hero.id = heroIdList[i];
                 hero.seatId = i;
+                hero.hp = 100;
                 playerHeroList.Add(hero);
             }
             else
             {
                 //后5个为敌方英雄
                 hero.id = heroIdList[i];
+                hero.hp = 100;
                 hero.seatId = i - 5;
                 enemyHeroList.Add(hero);
             }

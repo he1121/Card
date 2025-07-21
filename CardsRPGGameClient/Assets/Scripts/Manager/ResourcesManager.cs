@@ -14,7 +14,7 @@ public class ResourcesManager:Singleton<ResourcesManager>
         }
         if (resetRot)
         {
-            obj.transform.rotation = Quaternion.identity;
+            obj.transform.localRotation = Quaternion.identity;
         }
 
         if (resetScale)

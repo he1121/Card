@@ -38458,7 +38458,7 @@ GameObject:
   - component: {fileID: 4347320357389378}
   - component: {fileID: 8256062595219254879}
   m_Layer: 0
-  m_Name: Effect_RenMa_attack
+  m_Name: Effect_RenMa_skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38488,7 +38488,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420627068600146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac84bf2156bae0246842add29366d319, type: 3}
+  m_Script: {fileID: 11500000, guid: 414b683ad6747df4ea7b32df3a93bd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1467664232750562

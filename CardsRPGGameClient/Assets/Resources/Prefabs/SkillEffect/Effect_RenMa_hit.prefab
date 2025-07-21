@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4799372950629060}
   - component: {fileID: 4512963704741022502}
   m_Layer: 0
-  m_Name: Effect_RenMa_mingzhong
+  m_Name: Effect_RenMa_hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047730078965868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac84bf2156bae0246842add29366d319, type: 3}
+  m_Script: {fileID: 11500000, guid: 414b683ad6747df4ea7b32df3a93bd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1207661090219368
